@@ -46,7 +46,7 @@ namespace Business.Concrete
             }
             return new DataSuccessResult<user>(user.data, bllMessages.successfullLogin);
         }
-
+     //   [TransactionAspect]
         [ValidationAspect(typeof(productValidation))]
         public IDataResult<user> register(registerDto register)
         {

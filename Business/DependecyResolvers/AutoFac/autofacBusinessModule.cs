@@ -1,6 +1,9 @@
 ﻿using Autofac;
+using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
+using Castle.DynamicProxy;
+using Core.Utilities.Interceptors.Autofac;
 using Core.Utilities.Security.Jwt;
 using DataAccess.Repository.EFRepository.Abstract;
 using DataAccess.Repository.EFRepository.Concrete;
@@ -39,6 +42,12 @@ namespace Business.DependecyResolvers.AutoFac
             builder.RegisterType<IsupplierDal>().As<supplierDal>();
 
             builder.RegisterType<ITokenHelper>().As<jwtHelper>();
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
+                .EnableInterfaceInterceptors(new ProxyGenerationOptions() {
+                    Selector=new AspectInterceptorSelector()
+                
+                }).SingleInstance();
 
         }
     }
