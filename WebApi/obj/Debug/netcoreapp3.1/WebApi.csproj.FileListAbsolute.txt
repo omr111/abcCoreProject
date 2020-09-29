@@ -130,8 +130,6 @@ D:\Github\abcCoreProject\WebApi\bin\Debug\netcoreapp3.1\DataAccess.pdb
 D:\Github\abcCoreProject\WebApi\obj\Debug\netcoreapp3.1\WebApi.csprojAssemblyReference.cache
 D:\Github\abcCoreProject\WebApi\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfoInputs.cache
 D:\Github\abcCoreProject\WebApi\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfo.cs
-D:\Github\abcCoreProject\WebApi\obj\Debug\netcoreapp3.1\WebApi.csproj.CoreCompileInputs.cache
-D:\Github\abcCoreProject\WebApi\obj\Debug\netcoreapp3.1\WebApi.MvcApplicationPartsAssemblyInfo.cache
 D:\Github\abcCoreProject\WebApi\obj\Debug\netcoreapp3.1\WebApi.RazorTargetAssemblyInfo.cache
 D:\Github\abcCoreProject\WebApi\obj\Debug\netcoreapp3.1\WebApi.csproj.CopyComplete
 D:\Github\abcCoreProject\WebApi\obj\Debug\netcoreapp3.1\staticwebassets\WebApi.StaticWebAssets.Manifest.cache

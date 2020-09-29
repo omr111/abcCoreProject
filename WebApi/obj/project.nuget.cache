@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4xTKJqvj7a3FN5MNhc5cq4hyLaFYmMlq8wwD7YHJFxX+976blYxoH1md3z3KEV9w9DCDOrPTBv8rC7/HoJnZuw==",
+  "dgSpecHash": "9wzIfGqp/jQSWlbVzXH4DCk7Ch1bwV2Ui/DMCviuTaA3mhFgkRylN8G1roGKpOj8xCt23dh6I3kVOeZWDIO47A==",
   "success": true,
   "projectFilePath": "D:\\Github\\abcCoreProject\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\LENOVO\\.nuget\\packages\\autofac.extras.dynamicproxy\\5.0.0\\autofac.extras.dynamicproxy.5.0.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\fluentvalidation\\8.5.0\\fluentvalidation.8.5.0.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.8\\microsoft.aspnetcore.authentication.jwtbearer.3.1.8.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

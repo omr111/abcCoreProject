@@ -17,31 +17,33 @@ namespace Business.DependecyResolvers.AutoFac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<IuserBll>().As<userBll>();
-            builder.RegisterType<IuserDal>().As<userDal>();
+            builder.RegisterType<userBll>().As<IuserBll>();
+            builder.RegisterType<userDal>().As<IuserDal>();
 
-            builder.RegisterType<ICategoryBll>().As<CategoryBll>();
-            builder.RegisterType<ICategoryDal>().As<CategoryDal>();
+            builder.RegisterType<CategoryBll>().As<ICategoryBll>();
+            builder.RegisterType<CategoryDal>().As<ICategoryDal>();
 
-            builder.RegisterType<IDiscountCouponBll>().As<DiscountCouponBll>();
-            builder.RegisterType<IDiscountCouponDal>().As<DiscountCouponDal>();
+            builder.RegisterType<DiscountCouponBll>().As<IDiscountCouponBll>();
+            builder.RegisterType<DiscountCouponDal>().As<IDiscountCouponDal>();
 
-            builder.RegisterType<IorderBll>().As<orderBll>();
-            builder.RegisterType<IorderDal>().As<orderDal>();
+            builder.RegisterType<orderBll>().As<IorderBll>();
+            builder.RegisterType<orderDal>().As<IorderDal>();
 
-            builder.RegisterType<IproductBll>().As<productBll>();
-            builder.RegisterType<IproductDal>().As<productDal>();
+            builder.RegisterType<productBll>().As<IproductBll>();
+            builder.RegisterType<productDal>().As<IproductDal>();
 
-            builder.RegisterType<IproductPictureBll>().As<productPictureBll>();
-            builder.RegisterType<IproductPictureDal>().As<productPictureDal>();
+            builder.RegisterType<productPictureBll>().As<IproductPictureBll>();
+            builder.RegisterType<IproductPictureDal>().As<IproductPictureDal>();
 
-            builder.RegisterType<IroleBll>().As<roleBll>();
-            builder.RegisterType<IroleDal>().As<roleDal>();
+            builder.RegisterType<roleBll>().As<IroleBll>();
+            builder.RegisterType<roleDal>().As<IroleDal>();
 
-            builder.RegisterType<IsupplierBll>().As<supplierBll>();
-            builder.RegisterType<IsupplierDal>().As<supplierDal>();
+            builder.RegisterType<supplierBll>().As<IsupplierBll>();
+            builder.RegisterType<supplierDal>().As<IsupplierDal>();
 
-            builder.RegisterType<ITokenHelper>().As<jwtHelper>();
+            builder.RegisterType<AuthBll>().As<IAuthBll>();
+            
+            builder.RegisterType<jwtHelper>().As<ITokenHelper>();
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions() {
