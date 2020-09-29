@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Transactions;
 
-namespace Core.Aspects.Autofac.validation
+namespace Core.Aspects.Autofac.Transaction
 {
    public class TransactionAspect:MethodInterception
     {
