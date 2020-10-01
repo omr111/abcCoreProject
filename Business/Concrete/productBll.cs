@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Aspects.Autofac.Caching;
 using Core.DataResult.Abstract;
 using Entities.Concrete;
 using System;
@@ -11,26 +12,29 @@ namespace Business.Concrete
 {
     public class productBll : IproductBll
     {
+        
+        [CacheRemoveAspect("IproductBll.get")]//product bll'indeki methodlardan get ile başlayan methodların cache'lerini sil demek"
         public IResult addProduct(Product product)
         {
             throw new NotImplementedException();
         }
-
+        [CacheRemoveAspect("IproductBll.get")]
         public IResult deleteProductByEntity(Product product)
         {
             throw new NotImplementedException();
         }
-
+        [CacheRemoveAspect("IproductBll.get")]
         public IResult deleteProductById(int id)
         {
             throw new NotImplementedException();
         }
-
+        [CacheAspect()]
         public IDataResult<List<Product>> getAll()
         {
             throw new NotImplementedException();
         }
 
+        [CacheAspect()]
         public IDataResult<List<Product>> getAllByCategoryId(int catId)
         {
             throw new NotImplementedException();
@@ -40,7 +44,7 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
-
+        [CacheRemoveAspect("IproductBll.get")]
         public IResult updateProduct(Product product)
         {
             throw new NotImplementedException();
