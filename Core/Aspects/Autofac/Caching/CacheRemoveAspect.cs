@@ -2,6 +2,7 @@
 using Core.CoreDependencyResolvers.Caching;
 using Core.Utilities.Interceptors.Autofac;
 using Core.Utilities.Ioc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Core.Aspects.Autofac.Caching
             _pattern = pattern;
             _cacheManager = ServiceTool.serviceProvider.GetService<ICacheManager>();
         }
-        protected override void OnSuccess(IInvocation invocation)
+        public override void OnSuccess(IInvocation invocation)
         {
             _cacheManager.removeByPattern(_pattern);
         }

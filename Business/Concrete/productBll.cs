@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspect;
 using Core.Aspects.Autofac.Caching;
 using Core.DataResult.Abstract;
 using Entities.Concrete;
@@ -28,6 +29,7 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
+        [SecuredOperation("Product.List")]
         [CacheAspect()]
         public IDataResult<List<Product>> getAll()
         {

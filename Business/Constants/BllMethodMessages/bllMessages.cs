@@ -1,6 +1,7 @@
 ﻿using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants.BllMethodMessages
@@ -28,5 +29,6 @@ namespace Business.Constants.BllMethodMessages
         public static string userNotFound="Aranılan Kullanıcı Bulunanamadı";
         public static string emailAlreadyUsed="Bu Email Zaten Kullanılmaktadır.";
         public static string usernameAlreadyExist="Bu Kullanıcı Adı Zaten Kullanılmaktadır";
+        public static string AuthorizationDenied="Bu İşlemi Yapabilmek İçin Yetkiniz Yok !";
     }
 }
