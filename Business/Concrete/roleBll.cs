@@ -63,7 +63,8 @@ namespace Business.Concrete
 
         public IDataResult<List<role>> getAllByUserId(int userId)
         {
-            throw new NotImplementedException();
+            var result = _role.getAll(x => x.userRoles.Any(y => y.userId == userId)).ToList();
+            return new DataSuccessResult<List<role>>( result);
         }
 
         public IDataResult<role> getOneById(int id)

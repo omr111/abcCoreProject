@@ -25,7 +25,7 @@ namespace Core.Utilities.Security.Jwt
         public AccessToken CreateToken(user user, List<role> userRoles)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenOption.securityKey));
-            var singingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.Aes128CbcHmacSha256);
+            var singingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
             var jwt = CreateJwtSecurityToken(_tokenOption, user, singingCredentials, userRoles);
             var JwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var token = JwtSecurityTokenHandler.WriteToken(jwt);

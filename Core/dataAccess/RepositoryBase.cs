@@ -14,6 +14,7 @@ namespace Core.dataAccess
            using(var ctx=new TContext())
             {
                 ctx.Entry(entity).State = EntityState.Added;
+                ctx.SaveChanges();
             }
         }
 
@@ -22,6 +23,7 @@ namespace Core.dataAccess
             using (var ctx = new TContext())
             {
                 ctx.Entry(entity).State = EntityState.Deleted;
+                ctx.SaveChanges();
             }
         }
 
@@ -51,6 +53,7 @@ namespace Core.dataAccess
             using (var ctx = new TContext())
             {
                 ctx.Entry(entity).State = EntityState.Modified;
+                ctx.SaveChanges();
             }
         }
     }

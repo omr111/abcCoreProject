@@ -2,6 +2,8 @@
 using Business.BusinessAspect;
 using Core.Aspects.Autofac.Caching;
 using Core.DataResult.Abstract;
+using Core.DataResult.Concrete;
+using DataAccess.Repository.EFRepository.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,11 @@ namespace Business.Concrete
 {
     public class productBll : IproductBll
     {
+        IproductDal _product;
+        public productBll(IproductDal product)
+        {
+            _product = product;
+        }
         
         [CacheRemoveAspect("IproductBll.get")]//product bll'indeki methodlardan get ile başlayan methodların cache'lerini sil demek"
         public IResult addProduct(Product product)
@@ -29,11 +36,13 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
-        [SecuredOperation("Product.List")]
+        [SecuredOperation("Customer")]
+     
         [CacheAspect()]
+     
         public IDataResult<List<Product>> getAll()
         {
-            throw new NotImplementedException();
+            return new DataSuccessResult<List<Product>>(_product.getAll());
         }
 
         [CacheAspect()]
