@@ -4,6 +4,7 @@ using Business.ValidationRules.fluentValidation;
 using Core.Aspects.Autofac.validation;
 using Core.DataResult.Abstract;
 using Core.DataResult.Concrete;
+using Core.Utilities.Business;
 using Core.Utilities.Hashing;
 using Core.Utilities.Security.Jwt;
 using Entities.Concrete;
@@ -50,9 +51,9 @@ namespace Business.Concrete
         [ValidationAspect(typeof(productValidation))]
         public IDataResult<user> register(registerDto register)
         {
-            var isExistEmail = _user.getOneByEmail(register.userEmail);
             byte[] passwordHash;
             byte[] passwordSalt;
+            var isExistEmail = _user.getOneByEmail(register.userEmail);
             if (isExistEmail.success)
             {
                 return new DataErrorResult<user>(bllMessages.emailAlreadyUsed);

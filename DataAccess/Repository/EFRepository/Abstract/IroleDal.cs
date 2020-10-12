@@ -8,5 +8,6 @@ namespace DataAccess.Repository.EFRepository.Abstract
     public interface IroleDal : IRepositoryBase<role>
     {
          void addRoleToUser(int roleId, int userId);
+        object getAllByUserId(int ıd);
     }
 }
