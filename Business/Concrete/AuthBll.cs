@@ -31,7 +31,7 @@ namespace Business.Concrete
         public IDataResult<AccessToken> createAccessToken(user user)
         {
             List<role> role = _role.getAllByUserId(user.Id).data;
-           var Token= _token.CreateToken(user,role);
+            var Token = _token.CreateToken(user, role);
             return new DataSuccessResult<AccessToken>(Token);
         }
 
@@ -47,22 +47,12 @@ namespace Business.Concrete
             }
             return new DataSuccessResult<user>(user.data, bllMessages.successfullLogin);
         }
-     //   [TransactionAspect]
+        //   [TransactionAspect]
         [ValidationAspect(typeof(productValidation))]
-        public IDataResult<user> register(registerDto register)
+        public IResult register(registerDto register)
         {
             byte[] passwordHash;
             byte[] passwordSalt;
-            var isExistEmail = _user.getOneByEmail(register.userEmail);
-            if (isExistEmail.success)
-            {
-                return new DataErrorResult<user>(bllMessages.emailAlreadyUsed);
-            }
-            var isUserNameExist = _user.getOneByUserName(register.userName);
-            if (isUserNameExist.success)
-            {
-                return new DataErrorResult<user>(bllMessages.usernameAlreadyExist);
-            }
             user user = new user();
             hashHelper.createPasswordHash(register.password, out passwordHash, out passwordSalt);
             user.passwordHash = passwordHash;
@@ -71,20 +61,39 @@ namespace Business.Concrete
             user.surname = register.surname;
             user.name = register.name;
             user.userName = register.userName;
-            
             user.isActive = true;
+            IResult checkErrors = BusinessRules.Run(
+                isExistEmail(register.userEmail), isExistUserName(register.userName));
+            if (checkErrors != null)
+            {
+                return checkErrors;
+            }
+
+
             var result = _user.addUser(user);
             if (result.success)
             {
                 _role.addRoleToUser(2, user.Id);
-                
-                return new DataSuccessResult<user>(user, bllMessages.successfullRegister);
+                return new SuccessResult(result.message);
             }
-             
             else
-                return new DataErrorResult<user>(result.message);
-
+                return new ErrorResult(result.message);
 
         }
+        IResult isExistEmail(string email)
+        {
+            var isExistEmail = _user.getOneByEmail(email);
+            if (isExistEmail.success)
+                return new ErrorResult(bllMessages.emailAlreadyUsed);
+            return new SuccessResult();
+        }
+        IResult isExistUserName(string username)
+        {
+            var isUserNameExist = _user.getOneByUserName(username);
+            if (isUserNameExist.success)
+                return new ErrorResult(bllMessages.usernameAlreadyExist);
+            return new SuccessResult();
+        }
+
     }
 }

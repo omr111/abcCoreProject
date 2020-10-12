@@ -10,7 +10,7 @@ namespace Business.Abstract
 {
     public interface IAuthBll
     {
-        IDataResult<user> register(registerDto register);
+        IResult register(registerDto register);
         IDataResult<user> login(loginDto login);
  
         IDataResult<AccessToken> createAccessToken(user user);
