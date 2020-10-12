@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class initialDB : Migration
+    public partial class addLogTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,8 @@ namespace DataAccess.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    categoryName = table.Column<string>(nullable: true)
+                    categoryName = table.Column<string>(nullable: true),
+                    isActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,11 +29,27 @@ namespace DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     couponNumber = table.Column<string>(nullable: true),
                     expirationCoupon = table.Column<DateTime>(nullable: true),
+                    isActive = table.Column<bool>(nullable: false),
                     status = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_discountCoupons", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "logs",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    logDetail = table.Column<string>(nullable: true),
+                    logDate = table.Column<DateTime>(nullable: false),
+                    Audit = table.Column<string>(maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_logs", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,8 +72,7 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     supplierName = table.Column<string>(nullable: true),
-                    taxNumber = table.Column<string>(nullable: true),
-                    productId = table.Column<int>(nullable: false)
+                    taxNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,8 +89,9 @@ namespace DataAccess.Migrations
                     userEmail = table.Column<string>(nullable: true),
                     name = table.Column<string>(nullable: true),
                     surname = table.Column<string>(nullable: true),
-                    passwordHash = table.Column<string>(nullable: true),
-                    passwordSalt = table.Column<string>(nullable: true),
+                    isActive = table.Column<bool>(nullable: false),
+                    passwordHash = table.Column<byte[]>(nullable: true),
+                    passwordSalt = table.Column<byte[]>(nullable: true),
                     address = table.Column<string>(nullable: true),
                     profilePictureUrl = table.Column<string>(nullable: true)
                 },
@@ -94,7 +111,8 @@ namespace DataAccess.Migrations
                     count = table.Column<int>(nullable: false),
                     categoryId = table.Column<int>(nullable: false),
                     seoUrl = table.Column<string>(nullable: true),
-                    isInMainPage = table.Column<bool>(nullable: false)
+                    isInMainPage = table.Column<bool>(nullable: false),
+                    isActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -139,7 +157,7 @@ namespace DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     supplierId = table.Column<int>(nullable: false),
                     supplyDate = table.Column<DateTime>(nullable: true),
-                    status = table.Column<bool>(nullable: false)
+                    isActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -229,6 +247,7 @@ namespace DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     productCount = table.Column<int>(nullable: false),
                     productPrice = table.Column<decimal>(nullable: false),
+                    supplyId = table.Column<int>(nullable: false),
                     productId = table.Column<int>(nullable: false),
                     status = table.Column<bool>(nullable: false)
                 },
@@ -239,6 +258,12 @@ namespace DataAccess.Migrations
                         name: "FK_supplyDetails_products_productId",
                         column: x => x.productId,
                         principalTable: "products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_supplyDetails_supplies_supplyId",
+                        column: x => x.supplyId,
+                        principalTable: "supplies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -312,6 +337,11 @@ namespace DataAccess.Migrations
                 column: "productId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_supplyDetails_supplyId",
+                table: "supplyDetails",
+                column: "supplyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_userRoles_userId",
                 table: "userRoles",
                 column: "userId");
@@ -323,13 +353,13 @@ namespace DataAccess.Migrations
                 name: "discountCategories");
 
             migrationBuilder.DropTable(
+                name: "logs");
+
+            migrationBuilder.DropTable(
                 name: "orderDetails");
 
             migrationBuilder.DropTable(
                 name: "productPictures");
-
-            migrationBuilder.DropTable(
-                name: "supplies");
 
             migrationBuilder.DropTable(
                 name: "supplyDetails");
@@ -344,10 +374,10 @@ namespace DataAccess.Migrations
                 name: "orders");
 
             migrationBuilder.DropTable(
-                name: "suppliers");
+                name: "products");
 
             migrationBuilder.DropTable(
-                name: "products");
+                name: "supplies");
 
             migrationBuilder.DropTable(
                 name: "roles");
@@ -357,6 +387,9 @@ namespace DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "categories");
+
+            migrationBuilder.DropTable(
+                name: "suppliers");
         }
     }
 }

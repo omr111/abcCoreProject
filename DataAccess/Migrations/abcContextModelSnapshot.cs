@@ -61,6 +61,28 @@ namespace DataAccess.Migrations
                     b.ToTable("discountCoupons");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.Log", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Audit")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("logDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("logDetail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("logs");
+                });
+
             modelBuilder.Entity("Entities.Concrete.Product", b =>
                 {
                     b.Property<int>("Id")

@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Core.CoreDependencyResolvers.Caching.Microsoft
+namespace Core.CrossCuttingConcerns.Caching.Microsoft
 {
     public class MemoryCacheManager : ICacheManager
     {

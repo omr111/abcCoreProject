@@ -5,6 +5,7 @@ namespace DataAccess.entities
 {
     public class abcContext : DbContext
     {
+        public DbSet<Log> logs { get; set; }
         public DbSet<Product> products { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<order> orders { get; set; }
@@ -45,6 +46,7 @@ namespace DataAccess.entities
             modelBuilder.Entity<supply>().HasOne(s => s.supplier).WithMany(sr => sr.supplies).HasForeignKey(s => s.supplierId);
             modelBuilder.Entity<supplyDetail>().HasOne(sd => sd.product).WithMany(p => p.supplyDetails).HasForeignKey(sd => sd.productId);
             modelBuilder.Entity<supplyDetail>().HasOne(sd => sd.supply).WithMany(s => s.supplyDetails).HasForeignKey(sd => sd.supplyId);
+            
         }
 
     }

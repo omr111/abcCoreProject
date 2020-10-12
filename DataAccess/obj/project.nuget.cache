@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "B6ZX5L6Oru13bJGhe8pfATuuMMQcPLfx3lKJ3G1UcM+nrgD89qKb9jXPfievS8Jr7z8Sb1VN9A64/rvTYdbWUg==",
+  "dgSpecHash": "Yw58d2jqAainbzo0hrzM4WGRTFwbiir/9jEoqcZZRDRnCtHST3I6+UYhcAJuf6roMMTVkXodEPOvtxNbqiyLww==",
   "success": true,
   "projectFilePath": "D:\\Github\\abcCoreProject\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LENOVO\\.nuget\\packages\\autofac\\5.1.0\\autofac.5.1.0.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\autofac.extensions.dependencyinjection\\6.0.0\\autofac.extensions.dependencyinjection.6.0.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\autofac.extras.dynamicproxy\\5.0.0\\autofac.extras.dynamicproxy.5.0.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\fluentvalidation\\8.5.0\\fluentvalidation.8.5.0.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\log4net\\2.0.11\\log4net.2.0.11.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.http\\2.2.2\\microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",

@@ -19,10 +19,16 @@ namespace WebApi.Controllers
             _product = product;
         }
         [HttpGet("getall")]
-       // [Authorize(Roles ="Customer")]
+    
         public ActionResult getAll()
         {
             return Ok(_product.getAll());
+        }
+        [HttpGet("getone/{id}")]
+        
+        public ActionResult getone(int id)
+        {
+            return Ok(_product.getOneById(id));
         }
     }
 }

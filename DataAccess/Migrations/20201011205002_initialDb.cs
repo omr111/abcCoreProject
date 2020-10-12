@@ -2,7 +2,7 @@
 
 namespace DataAccess.Migrations
 {
-    public partial class validationAdded : Migration
+    public partial class initialDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

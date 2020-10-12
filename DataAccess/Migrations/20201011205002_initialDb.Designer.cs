@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(abcContext))]
-    [Migration("20200922214504_isActivesAdded")]
-    partial class isActivesAdded
+    [Migration("20201011205002_initialDb")]
+    partial class initialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,6 +61,28 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("discountCoupons");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.Log", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Audit")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("logDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("logDetail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("logs");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Product", b =>
@@ -299,11 +321,11 @@ namespace DataAccess.Migrations
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("passwordHash")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("passwordHash")
+                        .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("passwordSalt")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("passwordSalt")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("profilePictureUrl")
                         .HasColumnType("nvarchar(max)");

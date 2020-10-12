@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspect;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
+using Core.Aspects.Autofac.Performance;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.DataResult.Abstract;
 using Core.DataResult.Concrete;
 using DataAccess.Repository.EFRepository.Abstract;
@@ -36,10 +39,10 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
-        [SecuredOperation("Customer")]
-     
+       // [SecuredOperation("Customer")]  //rol yönetimi   
         [CacheAspect()]
-     
+        [PerformanceAspect(5)] //ürünlerin getirilme işlemi 5 saniyeden fazla sürerse debug'a yazacak
+        [LogAspect(typeof(DatabaseLogger))] //dosyaya loglama yapar
         public IDataResult<List<Product>> getAll()
         {
             return new DataSuccessResult<List<Product>>(_product.getAll());
@@ -50,10 +53,10 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
-
+        [LogAspect(typeof(DatabaseLogger))]
         public IDataResult<Product> getOneById(int id)
         {
-            throw new NotImplementedException();
+            return new DataSuccessResult<Product>(_product.getOne(x => x.Id == id));
         }
         [CacheRemoveAspect("IproductBll.get")]
         public IResult updateProduct(Product product)
